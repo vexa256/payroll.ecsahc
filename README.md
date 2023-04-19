@@ -1,34 +1,43 @@
-# Project Title
+Pyrol and HR System
+This is a Pyrol and HR System built using Laravel and Bootstrap 5.
 
-Brief description of the project.
+Getting Started
+Prerequisites
+PHP 7.4 or higher
+Composer
+Node.js and NPM
+Installation
+Clone the repository:
+bash
+Copy code
+git clone https://github.com/yourusername/pyrol-hr-system.git
+Install dependencies:
+Copy code
+composer install
+npm install
+Set up environment variables:
+Create a copy of .env.example and rename it to .env. Modify the database credentials and any other relevant settings.
 
-## Getting Started
+Generate application key:
+vbnet
+Copy code
+php artisan key:generate
+Run migrations and seeders:
+css
+Copy code
+php artisan migrate --seed
+Compile assets:
+arduino
+Copy code
+npm run dev
+Start the server:
+Copy code
+php artisan serve
+Usage
+Once the server is running, you can access the Pyrol and HR System at http://localhost:8000.
 
-### Prerequisites
+Contributing
+If you find any issues with the Pyrol and HR System or would like to contribute to its development, please feel free to open an issue or submit a pull request.
 
-List of things that need to be installed before running the software.
-
-### Installation
-
-Step-by-step instructions on how to install the software.
-
-## Usage
-
-Instructions on how to use the software.
-
-## Contributing
-
-Instructions on how to contribute to the project, including a link to the project's issue tracker and/or pull request guidelines.
-
-## Authors
-
-List of project authors and their contact information.
-
-## License
-
-A statement of the project's license and a link to the full license text.
-
-## Acknowledgments
-
-List of people or organizations that contributed to the project in some way, but are not listed as authors.
-
+License
+This project is licensed under the MIT License. See the LICENSE file for more information.
