@@ -16,7 +16,7 @@
             ],
      --}}
     {!! generateDynamicTable(
-        $DatabaseData,
+        $Departments,
         [
             ($updateAction = function ($id) {
                 return '<li><a data-bs-toggle="modal" href="#Update' .
