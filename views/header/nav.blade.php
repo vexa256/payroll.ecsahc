@@ -82,7 +82,7 @@
          MenuItem($link = route('MgtPercentageDeductions'), $label = 'Payroll Percentage Deductions');
          MenuItem($link = route('MgtConstantDeductions'), $label = 'Payroll Constant Deductions');
          MenuItem($link = route('MgtTaxes'), $label = 'Payroll Taxes');
-         MenuItem($link = route('PayrollSelectPayroll'), $label = 'Set Staff Payroll');
+         MenuItem($link = '#dfg', $label = 'Set Staff Payroll');
          MenuItem($link = '#dfg', $label = 'Execute Payroll');
          MenuItem($link = '#dfg', $label = 'Payroll Journal (Monthly)');
          MenuItem($link = '#dfg', $label = 'Payroll Journal (Yearly)');
