@@ -1,6 +1,6 @@
 function BootEditor() {}
 
-$(function() {
+$(function () {
     if ($("#kt_stepper_example_basic").length > 0) {
         // Stepper lement
         var element = document.querySelector("#kt_stepper_example_basic");
@@ -9,17 +9,17 @@ $(function() {
         var stepper = new KTStepper(element);
 
         // Handle next step
-        stepper.on("kt.stepper.next", function(stepper) {
+        stepper.on("kt.stepper.next", function (stepper) {
             stepper.goNext(); // go next step
         });
 
         // Handle previous step
-        stepper.on("kt.stepper.previous", function(stepper) {
+        stepper.on("kt.stepper.previous", function (stepper) {
             stepper.goPrevious(); // go previous step
         });
     }
 
-    $(document).on("click", ".deleteConfirm", function() {
+    $(document).on("click", ".deleteConfirm", function () {
         var route = $(this).data("route");
         var msg = $(this).data("msg");
 
@@ -54,16 +54,16 @@ $(function() {
 
     $(".tox-statusbar__branding").hide();
 
-    setInterval(function() {
+    setInterval(function () {
         $(".paginate_button").addClass("bg-dark text-light shadow-lg");
     }, 1000);
 });
 
 /***Plugins  INtOnly INput*/
 
-(function(a) {
+(function (a) {
     a.fn.extend({
-        inputNumberFormat: function(c) {
+        inputNumberFormat: function (c) {
             this.defaultOptions = {
                 decimal: 2,
                 decimalAuto: 2,
@@ -72,7 +72,7 @@ $(function() {
                 allowNegative: false,
             };
             var e = a.extend({}, this.defaultOptions, c);
-            var d = function(i, f) {
+            var d = function (i, f) {
                 var h = [];
 
                 var g = "^[0-9]+";
@@ -104,7 +104,7 @@ $(function() {
                 }
                 return h;
             };
-            var b = function(k, f) {
+            var b = function (k, f) {
                 var j = k;
                 if (!j) {
                     return j;
@@ -115,7 +115,8 @@ $(function() {
                 j = j.replace(",", f.separator);
                 if (f.decimal && f.decimalAuto) {
                     j =
-                        Math.round(j * Math.pow(10, f.decimal)) / Math.pow(10, f.decimal) +
+                        Math.round(j * Math.pow(10, f.decimal)) /
+                            Math.pow(10, f.decimal) +
                         "";
                     if (j.indexOf(f.separator) === -1) {
                         j += f.separator;
@@ -127,9 +128,9 @@ $(function() {
                 }
                 return j;
             };
-            return this.each(function() {
+            return this.each(function () {
                 var f = a(this);
-                f.on("keypress", function(j) {
+                f.on("keypress", function (j) {
                     if (j.ctrlKey) {
                         return;
                     }
@@ -140,18 +141,21 @@ $(function() {
                     var g = a(this).val().substr(0, j.target.selectionStart);
                     var h = a(this)
                         .val()
-                        .substr(j.target.selectionEnd, a(this).val().length - 1);
+                        .substr(
+                            j.target.selectionEnd,
+                            a(this).val().length - 1
+                        );
                     var k = g + j.key + h;
                     if (!d(k, i)) {
                         j.preventDefault();
                         return;
                     }
                 });
-                f.on("blur", function(h) {
+                f.on("blur", function (h) {
                     var g = a.extend({}, e, a(this).data());
                     a(this).val(b(a(this).val(), g));
                 });
-                f.on("change", function(h) {
+                f.on("change", function (h) {
                     var g = a.extend({}, e, a(this).data());
                     a(this).val(b(a(this).val(), g));
                 });
@@ -161,8 +165,8 @@ $(function() {
 })(jQuery);
 /***Plugins */
 
-$(function() {
-    $("a[href='#']").on("click", function(e) {
+$(function () {
+    $("a[href='#']").on("click", function (e) {
         e.preventDefault();
     });
 
@@ -195,8 +199,33 @@ $(function() {
 
 $(document).ready(function () {
     $(document).on("click", ".PdfViewer", function () {
-      var path = $(this).data("source");
-      var doc = $(this).data("doc");
-      PDFObject.embed(path, "#adobe-dc-view");
+        var path = $(this).data("source");
+        var doc = $(this).data("doc");
+        $("#adobe-dc-view").css("height", "500px");
+        PDFObject.embed(path, "#adobe-dc-view");
     });
-  });
+
+    // // Define a counter to keep track of how many times the code has run
+    // let counter = 0;
+
+    // // Define the function to remove fullscreen modals and replace them with modal-xl
+    // function replaceModals() {
+    //     // Select all Bootstrap 5 modal fullscreen and loop through them
+    //     $(".modal-fullscreen").each(function () {
+    //         // Remove the fullscreen class and add the modal-xl class
+    //         $(this).removeClass("modal-fullscreen").addClass("modal-xl");
+    //         // $(".modal-dialogue").addClass("modal-dialog-top");
+    //     });
+
+    //     // Increment the counter
+    //     counter++;
+
+    //     // If the counter has reached 20, stop running the function
+    //     if (counter === 20) {
+    //         clearInterval(intervalId);
+    //     }
+    // }
+
+    // // Run the function every second
+    // const intervalId = setInterval(replaceModals, 1000);
+});

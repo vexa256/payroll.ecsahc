@@ -37,7 +37,11 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
 
-
+    <style>
+        .modal {
+            height: 80% !important;
+        }
+    </style>
 
 </head>
 <!--end::Head-->

@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('taxes', function (Blueprint $table) {
             $table->id();
-            $table->string('EmpID');
             $table->string('Tax');
-            $table->decimal('Amount', 30, 2);
-            $table->date('ValidFrom');
-            $table->date('ValidTo');
-            $table->string('TaxValidity');
+            $table->string('TID');
+            $table->decimal('TaxPercentage', 30, 2);
+            $table->string('Description');
+
             $table->timestamps();
         });
     }

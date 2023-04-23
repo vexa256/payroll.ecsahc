@@ -46,11 +46,12 @@
 
          MenuItem($link = route('MgtEmp'), $label = 'Staff Database');
          MenuItem($link = route('SelectSelectStaffMemberBeneficiary'), $label = 'Staff Beneficiaries');
-         MenuItem($link = '#dfg', $label = 'Staff Benefits');
-         MenuItem($link = '#dfg', $label = 'Contract Validity');
-         MenuItem($link = '#dfg', $label = 'Soon Expiring Contracts');
-         MenuItem($link = '#dfg', $label = 'Expired  Contracts');
-         MenuItem($link = '#dfg', $label = 'Staff Documentation');
+         MenuItem($link = route('SelectStaffForBenefits'), $label = 'Staff Benefits');
+         MenuItem($link = route('StaffContractValidity'), $label = 'Contract Validity');
+         MenuItem($link = route('SoonExpiringContracts'), $label = 'Soon Expiring Contracts');
+         MenuItem($link = route('ExpiredContracts'), $label = 'Expired  Contracts');
+         MenuItem($link = route('StaffDemographics'), $label = 'Staff Demographics Analysis');
+         MenuItem($link = route('StaffDocsSelect'), $label = 'Staff Documentation');
 
          ?>
 
@@ -76,12 +77,12 @@
          <!--begin:Menu item-->
          <?php
 
-         MenuItem($link = '#dfg', $label = 'Payroll Constant Benefits');
-         MenuItem($link = '#dfg', $label = 'Payroll Percentage Benefits');
-         MenuItem($link = '#dfg', $label = 'Payroll Percentage Deductions');
-         MenuItem($link = '#dfg', $label = 'Payroll Constant Deductions');
-         MenuItem($link = '#dfg', $label = 'Payroll Taxes');
-         MenuItem($link = '#dfg', $label = 'Set Staff Payroll');
+         MenuItem($link = route('MgtConstantBenefits'), $label = 'Payroll Constant Benefits');
+         MenuItem($link = route('MgtPercentageBenefits'), $label = 'Payroll Percentage Benefits');
+         MenuItem($link = route('MgtPercentageDeductions'), $label = 'Payroll Percentage Deductions');
+         MenuItem($link = route('MgtConstantDeductions'), $label = 'Payroll Constant Deductions');
+         MenuItem($link = route('MgtTaxes'), $label = 'Payroll Taxes');
+         MenuItem($link = route('PayrollSelectPayroll'), $label = 'Set Staff Payroll');
          MenuItem($link = '#dfg', $label = 'Execute Payroll');
          MenuItem($link = '#dfg', $label = 'Payroll Journal (Monthly)');
          MenuItem($link = '#dfg', $label = 'Payroll Journal (Yearly)');

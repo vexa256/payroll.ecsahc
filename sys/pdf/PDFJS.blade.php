@@ -8,7 +8,7 @@
                 </h5>
 
                 <!--begin::Close-->
-                <a href="#MgtTaxes" data-bs-toggle="modal" type="button"
+                <a href="" data-bs-toggle="modal" type="button"
                     class="btn btn-info" data-bs-dismiss="modal"
                     class="btn btn-icon btn-sm btn-active-light-primary ms-2"
                     data-bs-dismiss="modal" aria-label="Close">

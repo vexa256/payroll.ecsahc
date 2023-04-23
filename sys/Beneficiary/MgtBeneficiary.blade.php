@@ -40,7 +40,7 @@
                         <td>{{ $data->Gender }}</td>
                         <td>{{ $data->Address }}</td>
                         <td>{{ $data->PhoneNumber }}</td>
-                        <td>{{ asset($data->PdfIdScan) }}
+                        <td>
                             <a data-doc="ID Scan"
                                 data-source="{{ asset($data->PdfIdScan) }}"
                                 data-bs-toggle="modal" href="#PdfJS"

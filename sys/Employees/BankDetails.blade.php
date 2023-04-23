@@ -50,8 +50,9 @@
 
                                     <tr>
                                         <td>{{ $data->StaffName }}</td>
-                                        <td>{{ number_format($data->PassportOrNationalIdNumber, 2) }}
-                                            UGX </td>
+                                        <td>{{ number_format($data->BasicSalaryPerMonthInUsd, 2) }}
+                                            USD
+                                        </td>
                                         <td>{{ $data->BankName }}</td>
                                         <td>{{ $data->BankBranch }}</td>
                                         <td>{{ $data->AccountName }}</td>

@@ -7,6 +7,7 @@ use App\Http\Controllers\FormEngine;
 
 class HumanResourceDataSettingsController extends Controller
 {
+
     public function MgtDepts()
     {
         $FormEngine = new FormEngine();

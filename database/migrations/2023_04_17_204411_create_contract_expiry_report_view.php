@@ -15,6 +15,7 @@ return new class extends Migration
         DB::statement("
         CREATE VIEW contract_expiry_report AS
         SELECT
+            id,
             StaffName,
             PhoneNumber,
             Email,

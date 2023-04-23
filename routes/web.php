@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AppController;
 use App\Http\Controllers\CrudController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\PayrollController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PayrollDataController;
 use App\Http\Controllers\HumanResourceDataSettingsController;
 
 /*
@@ -19,7 +21,55 @@ use App\Http\Controllers\HumanResourceDataSettingsController;
  */
 Route::middleware(['auth'])->group(function () {
 
+    Route::controller(FileController::class)->group(function () {
+
+        Route::get('createManagementFiles', 'createManagementFiles')->name('createManagementFiles');
+
+    });
+
+    Route::controller(PayrollController::class)->group(function () {
+
+        Route::get('SetPayroll', 'SetPayroll')->name('SetPayroll');
+
+        Route::get('PayrollSelectStaff', 'PayrollSelectStaff')->name('PayrollSelectStaff');
+
+        Route::get('PayrollSelectPayroll', 'PayrollSelectPayroll')->name('PayrollSelectPayroll');
+
+    });
+
+    Route::controller(PayrollDataController::class)->group(function () {
+
+        Route::get('MgtTaxes', 'MgtTaxes')->name('MgtTaxes');
+
+        Route::get('MgtConstantDeductions', 'MgtConstantDeductions')->name('MgtConstantDeductions');
+
+        Route::get('MgtPercentageDeductions', 'MgtPercentageDeductions')->name('MgtPercentageDeductions');
+
+        Route::get('MgtPercentageBenefits', 'MgtPercentageBenefits')->name('MgtPercentageBenefits');
+
+        Route::get('MgtConstantBenefits', 'MgtConstantBenefits')->name('MgtConstantBenefits');
+
+    });
+
     Route::controller(StaffController::class)->group(function () {
+
+        Route::get('SoonExpiringContracts', 'SoonExpiringContracts')->name('SoonExpiringContracts');
+
+        Route::get('MgtStaffDocs', 'MgtStaffDocs')->name('MgtStaffDocs');
+
+        Route::get('StaffDocsSelect', 'StaffDocsSelect')->name('StaffDocsSelect');
+
+        Route::get('ExpiredContracts', 'ExpiredContracts')->name('ExpiredContracts');
+
+        Route::get('StaffDemographics', 'StaffDemographics')->name('StaffDemographics');
+
+        Route::get('StaffContractValidity', 'StaffContractValidity')->name('StaffContractValidity');
+
+        Route::get('MgtStaffBenefits', 'MgtStaffBenefits')->name('MgtStaffBenefits');
+
+        Route::get('SelectStaffForBenefits', 'SelectStaffForBenefits')->name('SelectStaffForBenefits');
+
+        Route::get('Test', 'Test')->name('Test');
 
         Route::get('AcceptSelectStaffMemberBeneficiary', 'AcceptSelectStaffMemberBeneficiary')->name('AcceptSelectStaffMemberBeneficiary');
 
@@ -66,3 +116,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/paul.php';

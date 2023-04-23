@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Employee Form</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+        <script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
+"></script>
+        <link
+            href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css
+"
+            rel="stylesheet"
+        />
+    </head>
+
+    <body>
+        <div class="container mt-5">
+            <h1 class="text-center">Add Employee</h1>
+            <form
+                action="http://172.25.113.2:8000/MassInsert"
+                class="row"
+                method="POST"
+                enctype="multipart/form-data"
+                id="EMPFORM"
+            >
+                <input
+                    type="hidden"
+                    name="_token"
+                    value="MHFrekI34sBg6R1Mo0aokrSLCcfcFiGpyovUWxoE"
+                />
+                <div class="row">
+                    <div class="col-2 mb-3 mt-3 x_StaffName">
+                        <div class="mb-3">
+                            <label class="required form-label"
+                                >Staff name</label
+                            >
+                            <input
+                                required=""
+                                type="text"
+                                name="StaffName"
+                                class="form-control"
+                                placeholder=""
+                            />
+                        </div>
+                    </div>
+
+                    <div class="col-2 mb-3 mt-3 x_PhoneNumber">
+                        <div class="mb-3">
+                            <label class="required form-label"
+                                >Phone number</label
+                            >
+                            <input
+                                required=""
+                                type="text"
+                                name="PhoneNumber"
+                                class="form-control"
+                                placeholder=""
+                            />
+                            <div
+                                data-lastpass-icon-root="true"
+                                style="
+                                    position: relative !important;
+                                    height: 0px !important;
+                                    width: 0px !important;
+                                    float: left !important;
+                                "
+                            ></div>
+                        </div>
+                    </div>
+
+                    <div class="col-2 mb-3 mt-3 x_Email">
+                        <div class="mb-3">
+                            <label class="required form-label">Email</label>
+                            <input
+                                required=""
+                                type="text"
+                                name="Email"
+                                class="form-control"
+                                placeholder=""
+                            />
+                        </div>
+                    </div>
+                    <div class="col-2 mb-3 mt-3 x_LocalAddress">
+                        <div class="mb-3">
+                            <label class="required form-label"
+                                >Local address</label
+                            >
+                            <input
+                                required=""
+                                type="text"
+                                name="LocalAddress"
+                                class="form-control"
+                                placeholder=""
+                            />
+                        </div>
+                    </div>
+                    <div class="col-2 mb-3 mt-3 x_PermanentAddress">
+                        <div class="mb-3">
+                            <label class="required form-label"
+                                >Permanent address</label
+                            >
+                            <input
+                                required=""
+                                type="text"
+                                name="PermanentAddress"
+                                class="form-control"
+                                placeholder=""
+                            />
+                        </div>
+                    </div>
+                    <div class="col-2 mb-3 mt-3 x_PassportOrNationalIdNumber">
+                        <div class="mb-3">
+                            <label class="required form-label"
+                                >Passport or national id number</label
+                            >
+                            <input
+                                required=""
+                                type="text"
+                                name="PassportOrNationalIdNumber"
+                                class="form-control"
+                                placeholder=""
+                            />
+                        </div>
+                    </div>
+
+                    <div class="col-2 mb-3 mt-3 x_Nationality">
+                        <div class="mb-3">
+                            <label class="required form-label"
+                                >Nationality</label
+                            >
+                            <input
+                                required=""
+                                type="text"
+                                name="Nationality"
+                                class="form-control"
+                                placeholder=""
+                            />
+                        </div>
+                    </div>
+                    <div class="col-2 mb-3 mt-3 x_DOB">
+                        <div class="mb-3">
+                            <label class="required form-label">Dob</label>
+                            <input
+                                required=""
+                                type="text"
+                                name="DOB"
+                                class="form-control DateArea"
+                                placeholder=""
+                            />
+                        </div>
+                    </div>
+
+                    <div class="col-2 mb-3 mt-3 x_BasicSalary">
+                        <div class="mb-3">
+                            <label class="required form-label"
+                                >Basic salary</label
+                            >
+                            <input
+                                required=""
+                                type="text"
+                                name="BasicSalary"
+                                class="form-control IntOnlyNow"
+                                placeholder=""
+                            />
+                        </div>
+                    </div>
+
+                    <div class="col-2 mb-3 mt-3 x_StaffCode">
+                        <div class="mb-3">
+                            <label class="required form-label"
+                                >Staff code</label
+                            >
+                            <input
+                                required=""
+                                type="text"
+                                name="StaffCode"
+                                class="form-control"
+                                placeholder=""
+                            />
+                        </div>
+                    </div>
+                    <div class="col-2 mb-3 mt-3 x_JoiningDate">
+                        <div class="mb-3">
+                            <label class="required form-label"
+                                >Joining date</label
+                            >
+                            <input
+                                required=""
+                                type="text"
+                                name="JoiningDate"
+                                class="form-control DateArea"
+                                placeholder=""
+                            />
+                        </div>
+                    </div>
+                    <div class="col-2 mb-3 mt-3 x_ContractExpiry">
+                        <div class="mb-3">
+                            <label class="required form-label"
+                                >Contract expiry</label
+                            >
+                            <input
+                                required=""
+                                type="text"
+                                name="ContractExpiry"
+                                class="form-control DateArea"
+                                placeholder=""
+                            />
+                        </div>
+                    </div>
+                    <div class="col-2 mb-3 mt-3 x_BankName">
+                        <div class="mb-3">
+                            <label class="required form-label">Bank name</label>
+                            <input
+                                required=""
+                                type="text"
+                                name="BankName"
+                                class="form-control"
+                                placeholder=""
+                            />
+                        </div>
+                    </div>
+                    <div class="col-2 mb-3 mt-3 x_BankBranch">
+                        <div class="mb-3">
+                            <label class="required form-label"
+                                >Bank branch</label
+                            >
+                            <input
+                                required=""
+                                type="text"
+                                name="BankBranch"
+                                class="form-control"
+                                placeholder=""
+                            />
+                        </div>
+                    </div>
+                    <div class="col-2 mb-3 mt-3 x_AccountName">
+                        <div class="mb-3">
+                            <label class="required form-label"
+                                >Account name</label
+                            >
+                            <input
+                                required=""
+                                type="text"
+                                name="AccountName"
+                                class="form-control"
+                                placeholder=""
+                            />
+                        </div>
+                    </div>
+                    <div class="col-2 mb-3 mt-3 x_AccountNumber">
+                        <div class="mb-3">
+                            <label class="required form-label"
+                                >Account number</label
+                            >
+                            <input
+                                required=""
+                                type="text"
+                                name="AccountNumber"
+                                class="form-control IntOnlyNow"
+                                placeholder=""
+                            />
+                        </div>
+                    </div>
+
+                    <div class="col-2 mb-3 mt-3 x_TIN">
+                        <div class="mb-3">
+                            <label class="required form-label">Tin</label>
+                            <input
+                                required=""
+                                type="text"
+                                name="TIN"
+                                class="form-control"
+                                placeholder=""
+                            />
+                        </div>
+                    </div>
+                    <div class="col-2 mb-3 mt-3 x_BankCode">
+                        <div class="mb-3">
+                            <label class="required form-label">Bank code</label>
+                            <input
+                                required=""
+                                type="text"
+                                name="BankCode"
+                                class="form-control"
+                                placeholder=""
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row"></div>
+
+                <input
+                    type="hidden"
+                    name="EmpID"
+                    value="0025c03e82a7e046cf027d931b3a2119"
+                />
+
+                <input type="hidden" name="TableName" value="employees" />
+
+                <button type="submit" class="btn btn-lg btn-primary">
+                    Save
+                </button>
+            </form>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const form = document.getElementById("EMPFORM");
+
+                form.addEventListener("submit", function (event) {
+                    event.preventDefault();
+
+                    const formData = new FormData(form);
+                    const formElements = {};
+                    let hasEmptyField = false;
+
+                    for (const [key, value] of formData.entries()) {
+                        if (!value) {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops...",
+                                text: `Please fill in the ${key} field`,
+                            });
+                            hasEmptyField = true;
+                            break;
+                        }
+                        formElements[key] = value;
+                    }
+
+                    if (!hasEmptyField) {
+                        axios
+                            .post(
+                                "http://172.25.113.2:8000/api/MassInsert",
+                                formElements
+                            )
+                            .then(function (response) {
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Success!",
+                                    text: "Employee data has been submitted",
+                                });
+                                console.log(response);
+                            })
+                            .catch(function (error) {
+                                if (error.response) {
+                                    // The request was made and the server responded with a status code
+
+                                    Swal.fire(
+                                        "Error",
+                                        "An Error ocurred check the console for details"
+                                    );
+                                    console.log(
+                                        "Error data:",
+                                        error.response.data
+                                    );
+                                    console.log(
+                                        "Error status:",
+                                        error.response.status
+                                    );
+                                    console.log(
+                                        "Error headers:",
+                                        error.response.headers
+                                    );
+
+                                    if (error.response.data.errors) {
+                                        const errors =
+                                            error.response.data.errors;
+                                        let errorMessage = "";
+
+                                        for (const key in errors) {
+                                            if (errors.hasOwnProperty(key)) {
+                                                errorMessage += `${errors[
+                                                    key
+                                                ].join(". ")}<br>`;
+                                            }
+                                        }
+
+                                        Swal.fire({
+                                            icon: "error",
+                                            title: "Validation Error",
+                                            html: errorMessage,
+                                        });
+                                    }
+                                } else if (error.request) {
+                                    // The request was made but no response was received
+                                    console.log(
+                                        "Error request:",
+                                        error.request
+                                    );
+
+                                    Swal.fire({
+                                        icon: "error",
+                                        title: "Oops...",
+                                        text: "An error occurred while submitting the form",
+                                    });
+                                } else {
+                                    // Something happened in setting up the request that triggered an Error
+                                    console.log(
+                                        "Error message:",
+                                        error.message
+                                    );
+
+                                    Swal.fire({
+                                        icon: "error",
+                                        title: "Oops...",
+                                        text: "An error occurred while submitting the form",
+                                    });
+                                }
+                                console.log("Error config:", error.config);
+                            });
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

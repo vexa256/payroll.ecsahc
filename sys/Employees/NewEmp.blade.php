@@ -68,7 +68,7 @@
                         <div class="mb-3 mt-3 col-md-4">
                             <label id="label" for="exampleFormControlInput1"
                                 class="required form-label">Cluster</label>
-                            <select name="Department" required
+                            <select name="ClusterID" required
                                 class="form-select form-control-sm  form-control"
                                 data-control="select2"
                                 data-placeholder="Select an option">

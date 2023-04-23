@@ -49,7 +49,7 @@
             };
 
             Swal.fire('Information', '{{ session('taxadded') }}',
-            'success');
+                'success');
 
         });
     </script>
@@ -81,26 +81,6 @@
     </script>
 @endif
 
-
-@isset($SelectKyc)
-    <script>
-        Swal.fire('Select Investment',
-            'Select the investment whose KYC is to be reviewed', 'success');
-    </script>
-@endisset
-x_RecordStatus
-
-<script>
-    /*
-$(function() {
-
-if ($('.x_RecordStatus').length > 0) {
-    $('.x_RecordStatus').remove();
-}
-
-});
-*/
-</script>
 
 
 @if (isset($rem))

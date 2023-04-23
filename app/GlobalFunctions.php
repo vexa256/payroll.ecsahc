@@ -1,5 +1,83 @@
 <?php
+use Illuminate\Support\Str;
 use App\Http\Controllers\FormEngine;
+
+function generateDynamicTable($data, $actions, $rem = [], $MustHave = [])
+{
+    // Check if the data is empty
+    if ($data->isEmpty()) {
+        return '<p>No data available.</p>';
+    }
+
+    // Get the first row to extract headers
+    $firstRow = $data->first();
+
+    // Generate table headers
+    $output = '<table class="mytable table table-rounded table-bordered border gy-3 gs-3">';
+    $output .= '<thead><tr class="fw-bold text-gray-800 border-bottom border-gray-200">';
+
+    foreach ($firstRow as $key => $value) {
+        if (in_array($key, $rem)) {
+            continue;
+        }
+
+        $header = ucwords(Str::snake($key, ' '));
+        $output .= '<th>' . e($header) . '</th>';
+    }
+
+    // Add custom headers if provided
+    if (!empty($MustHave)) {
+        foreach ($MustHave as $customHeader) {
+            $output .= '<th>' . $customHeader['header'] . '</th>';
+        }
+    }
+
+    $output .= '<th class="bg-dark text-light">Actions</th></tr></thead>';
+
+    // Generate table data
+    $output .= '<tbody>';
+    foreach ($data as $row) {
+        $output .= '<tr>';
+        foreach ($row as $key => $value) {
+            if (in_array($key, $rem)) {
+                continue;
+            }
+
+            // Check if the column contains a PDF link or path
+            $isPdf = preg_match('/(.pdf$)|(.pdf\?)/i', $value);
+
+            if ($isPdf) {
+                $output .= '<td>';
+                $output .= '<a data-doc="' . e($row->id) . '" data-source="' . e(asset($value)) . '" data-bs-toggle="modal" href="#PdfJS" class="btn btn-sm PdfViewer btn-info"><i class="fas fa-file-pdf" aria-hidden="true"></i></a>';
+                $output .= '</td>';
+            } else {
+                $output .= '<td>' . e($value) . '</td>';
+            }
+        }
+
+        // Add custom data if provided
+        if (!empty($MustHave)) {
+            foreach ($MustHave as $customData) {
+                $output .= '<td>' . $customData['data']($row) . '</td>';
+            }
+        }
+
+        // Generate action buttons
+        $output .= '<td>';
+        $output .= '<div class="dropdown">';
+        $output .= '<button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Choose Action</button>';
+        $output .= '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">';
+
+        foreach ($actions as $action) {
+            $output .= $action($row->id);
+        }
+
+        $output .= '</ul></div></td></tr>';
+    }
+    $output .= '</tbody></table>';
+
+    return $output;
+}
 
 function camel_case($str)
 {

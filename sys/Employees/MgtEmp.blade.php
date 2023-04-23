@@ -17,12 +17,13 @@
          <thead>
              <tr class="fw-bold  text-gray-800 border-bottom border-gray-200">
                  <th>Name</th>
+                 <th>Employee Type</th>
                  <th>Contract End</th>
                  <th>Code</th>
                  <th>Designation</th>
                  <th>Gender</th>
                  {{-- <th>Supervisor</th> --}}
-                 <th>Dept</th>
+                 <th>Cluster</th>
                  <th>Edit</th>
                  <th>Trash</th>
                  <th class="bg-dark text-light"> Actions</th>
@@ -34,13 +35,14 @@
                  @foreach ($Employees as $data)
                      <tr>
                          <td>{{ $data->StaffName }}</td>
+                         <td>{{ $data->EmployeeType }}</td>
                          <td>{{ date('j, M, Y', strtotime($data->ContractExpiry)) }}
                          </td>
                          <td>{{ $data->StaffCode }}</td>
                          <td>{{ $data->StaffRole }}</td>
                          <td>{{ $data->Gender }}</td>
                          {{-- <td>{{ $data->ReportsTo }}</td> --}}
-                         <td>{{ $data->DepartmentName }}</td>
+                         <td>{{ $data->ClusterName }}</td>
                          <td>
 
                              <a href="#Update{{ $data->id }}"

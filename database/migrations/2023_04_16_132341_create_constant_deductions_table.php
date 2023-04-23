@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('constant_deductions', function (Blueprint $table) {
             $table->id();
             $table->string('Deduction');
+            $table->string('CDID');
+
             $table->string('Description');
             $table->decimal('Amount', 30, 2);
             $table->timestamps();

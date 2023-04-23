@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('staff_docs', function (Blueprint $table) {
             $table->id();
             $table->string('EmpID');
-            $table->string('StaffName');
-            $table->string('Department');
-            $table->string('Designation');
+            // $table->string('StaffName');
+            // $table->string('Department');
+            // $table->string('Designation');
             $table->string('DocumentCategory');
             $table->string('DocumentTitle');
             $table->text('Description');
