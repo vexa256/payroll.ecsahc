@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('EmpID');
             $table->string('TID');
-            $table->string('AmountInUsd');
+            $table->decimal('PerecentageOfSalaryAffected');
             $table->date('ValidFrom');
             $table->date('ValidTo');
             $table->string('valid')->default('true');

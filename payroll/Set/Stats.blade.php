@@ -1,4 +1,4 @@
-<div class="row g-5 g-xl-8">
+{{-- <div class="row g-5 g-xl-8">
 
     <div class="col">
         <!--begin::Statistics Widget 5-->
@@ -10,7 +10,7 @@
                 <span
                     class="fas fa-shopping-cart text-white icon-3x ms-n1"></span>
                 <!--end::Font Awesome 5 Icon-->
-                <div class="text-white fw-bold fs-2 mb-2 mt-5">Deductions
+                <div class="text-white fw-bold fs-2  mb-2 mt-2">Deductions
                 </div>
                 <div class="fw-semibold text-white">Lands, Houses, Ranchos, Farms
                 </div>
@@ -28,7 +28,7 @@
                 <!--begin::Font Awesome 5 Icon-->
                 <span class="fas fa-building text-white icon-3x ms-n1"></span>
                 <!--end::Font Awesome 5 Icon-->
-                <div class="text-white fw-bold fs-2 mb-2 mt-5">Benefits</div>
+                <div class="text-white fw-bold fs-2  mb-2 mt-2">Benefits</div>
                 <div class="fw-semibold text-white">Flats, Shared Rooms, Duplex
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 <!--begin::Font Awesome 5 Icon-->
                 <span class="fas fa-chart-line text-white icon-3x ms-n1"></span>
                 <!--end::Font Awesome 5 Icon-->
-                <div class="text-white fw-bold fs-2 mb-2 mt-5">Taxes</div>
+                <div class="text-white fw-bold fs-2  mb-2 mt-2">Taxes</div>
                 <div class="fw-semibold text-white">50% Increased for FY20</div>
             </div>
             <!--end::Body-->
@@ -62,7 +62,7 @@
                 <!--begin::Font Awesome 5 Icon-->
                 <span class="fas fa-chart-line text-white icon-3x ms-n1"></span>
                 <!--end::Font Awesome 5 Icon-->
-                <div class="text-white fw-bold fs-2 mb-2 mt-5">Gross Salary
+                <div class="text-white fw-bold fs-2  mb-2 mt-2">Gross Salary
                 </div>
                 <div class="fw-semibold text-white">50% Increased for FY20</div>
             </div>
@@ -80,7 +80,7 @@
                 <!--begin::Font Awesome 5 Icon-->
                 <span class="fas fa-chart-line text-white icon-3x ms-n1"></span>
                 <!--end::Font Awesome 5 Icon-->
-                <div class="text-white fw-bold fs-2 mb-2 mt-5">Net Salary
+                <div class="text-white fw-bold fs-2  mb-2 mt-2">Net Salary
                 </div>
                 <div class="fw-semibold text-white">50% Increased for FY20</div>
             </div>
@@ -88,4 +88,4 @@
         </a>
         <!--end::Statistics Widget 5-->
     </div>
-</div>
+</div> --}}

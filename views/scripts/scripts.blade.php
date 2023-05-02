@@ -16,6 +16,32 @@
 </script>
 
 <script>
+    $(document).ready(function() {
+
+
+
+
+
+        // Listen for the 'shown.bs.modal' event on all modals
+        $('body').on('shown.bs.modal', '.modal', function() {
+            var modal = $(this);
+
+            // Destroy all select elements within the modal
+            modal.find('select').each(function() {
+                $(this).select2('destroy');
+            });
+
+            // Recreate select elements with the specified options
+            modal.find('[data-control="select2"]').each(
+                function() {
+                    $(this).select2({
+                        dropdownParent: modal
+                    }).focus();
+                });
+        });
+    });
+
+
     $(document).on('click', 'a[href="#dfg"]', function(event) {
         event.preventDefault();
         Swal.fire({
@@ -90,6 +116,9 @@
         });
     </script>
 @endif
+
+
+
 </body>
 
 

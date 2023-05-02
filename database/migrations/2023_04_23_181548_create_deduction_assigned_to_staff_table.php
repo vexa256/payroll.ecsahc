@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('EmpID');
             $table->string('DID');
-            $table->string('AmountInUsd');
+            // $table->string('AmountInUsd');
             $table->date('ValidFrom');
             $table->date('ValidTo');
             $table->string('Type')->default('constant');

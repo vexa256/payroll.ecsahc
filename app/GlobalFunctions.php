@@ -2,7 +2,68 @@
 use Illuminate\Support\Str;
 use App\Http\Controllers\FormEngine;
 
-function generateDynamicTable($data, $actions, $rem = [], $MustHave = [])
+function generateDynamicCard($data, $actions, $rem = [], $MustHave = [], $CardClass = "mycard", $CardTitle = "Card Title")
+{
+    // Check if the data is empty
+    if ($data->isEmpty()) {
+        return '<p>No data available for ' . $CardTitle . '</p>';
+    }
+
+    $output = '';
+
+    foreach ($data as $row) {
+        $output .= '<div class="card ' . $CardClass . '">';
+        $output .= '<div class="card-body">';
+        $output .= '<h5 class="card-title">' . $CardTitle . '</h5>';
+        $output .= '<ul class="list-group list-group-flush">';
+
+        foreach ($row as $key => $value) {
+            if (in_array($key, $rem)) {
+                continue;
+            }
+            $label = ucwords(strtolower(preg_replace('/(?<!^)[A-Z]/', ' $0', $key)));
+
+            // Check if the value is date
+            $date = DateTime::createFromFormat('Y-m-d', $value);
+            if ($date && $date->format('Y-m-d') === $value) {
+                $formattedDate = $date->format('F j, Y');
+                $output .= '<li class="list-group-item"><span class="text-primary">' . e($label) . ':</span> ' . e($formattedDate) . '</li>';
+            } elseif (is_numeric($value)) {
+                // Check if the value is numeric (integer, float, or decimal) and format it using number_format()
+                $output .= '<li class="list-group-item"><span class="text-primary">' . e($label) . ':</span> ' . e(number_format($value, 2)) . '</li>';
+            } else {
+                $output .= '<li class="list-group-item"><span class="text-primary">' . e($label) . ':</span> ' . e($value) . '</li>';
+            }
+        }
+
+        // Add custom data if provided
+        if (!empty($MustHave)) {
+            foreach ($MustHave as $customData) {
+                $output .= '<li class="list-group-item">' . $customData['data']($row) . '</li>';
+            }
+        }
+
+        $output .= '</ul>';
+
+        // Generate action buttons
+        if (!empty($actions)) {
+            $output .= '<div class="card-footer">';
+            $output .= '<div class="dropdown">';
+            $output .= '<button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Choose Action</button>';
+            $output .= '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">';
+            foreach ($actions as $action) {
+                $output .= $action($row->id);
+            }
+            $output .= '</ul></div>';
+            $output .= '</div>';
+        }
+
+        $output .= '</div></div>';
+    }
+
+    return $output;
+}
+function generateDynamicTable($data, $actions, $rem = [], $MustHave = [], $TableClass = "mytable")
 {
     // Check if the data is empty
     if ($data->isEmpty()) {
@@ -13,7 +74,7 @@ function generateDynamicTable($data, $actions, $rem = [], $MustHave = [])
     $firstRow = $data->first();
 
     // Generate table headers
-    $output = '<table class="mytable table table-rounded table-bordered border gy-3 gs-3">';
+    $output = '<table class="' . $TableClass . '  table table-rounded table-bordered border gy-3 gs-3">';
     $output .= '<thead><tr class="fw-bold text-gray-800 border-bottom border-gray-200">';
 
     foreach ($firstRow as $key => $value) {
@@ -32,7 +93,10 @@ function generateDynamicTable($data, $actions, $rem = [], $MustHave = [])
         }
     }
 
-    $output .= '<th class="bg-dark text-light">Actions</th></tr></thead>';
+    if (!empty($actions)) {
+        $output .= '<th class="bg-dark text-light">Actions</th>';
+    }
+    $output .= '</tr></thead>';
 
     // Generate table data
     $output .= '<tbody>';
@@ -51,11 +115,19 @@ function generateDynamicTable($data, $actions, $rem = [], $MustHave = [])
                 $output .= '<a data-doc="' . e($row->id) . '" data-source="' . e(asset($value)) . '" data-bs-toggle="modal" href="#PdfJS" class="btn btn-sm PdfViewer btn-info"><i class="fas fa-file-pdf" aria-hidden="true"></i></a>';
                 $output .= '</td>';
             } else {
-                $output .= '<td>' . e($value) . '</td>';
+                // Check if the value is numeric (integer, float, or decimal) and format it using number_format()
+                if (is_numeric($value)) {
+                    $output .= '<td>' . e(number_format($value, 2)) . '</td>';
+                } else {
+                    // Check if the value is a date/datetime column
+                    if (preg_match('/^(\d{4})-(\d{2})-(\d{2})(\s(\d{2}):(\d{2}):(\d{2}))?$/', $value)) {
+                        $output .= '<td>' . e(date('j F Y', strtotime($value))) . '</td>';
+                    } else {
+                        $output .= '<td>' . e($value) . '</td>';
+                    }
+                }
             }
-        }
-
-        // Add custom data if provided
+        } // Add custom data if provided
         if (!empty($MustHave)) {
             foreach ($MustHave as $customData) {
                 $output .= '<td>' . $customData['data']($row) . '</td>';
@@ -63,21 +135,111 @@ function generateDynamicTable($data, $actions, $rem = [], $MustHave = [])
         }
 
         // Generate action buttons
-        $output .= '<td>';
-        $output .= '<div class="dropdown">';
-        $output .= '<button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Choose Action</button>';
-        $output .= '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">';
-
-        foreach ($actions as $action) {
-            $output .= $action($row->id);
+        if (!empty($actions)) {
+            $output .= '<td>';
+            $output .= '<div class="dropdown">';
+            $output .= '<button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Choose Action</button>';
+            $output .= '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">';
+            foreach ($actions as $action) {
+                $output .= $action($row->id);
+            }
+            $output .= '</ul></div>';
+            $output .= '</td>';
         }
-
-        $output .= '</ul></div></td></tr>';
+        $output .= '</tr>';
     }
     $output .= '</tbody></table>';
 
     return $output;
 }
+
+// function generateDynamicTable($data, $actions, $rem = [], $MustHave = [], $TableClass = "mytable")
+// {
+//     // Check if the data is empty
+//     if ($data->isEmpty()) {
+//         return '<p>No data available.</p>';
+//     }
+
+//     // Get the first row to extract headers
+//     $firstRow = $data->first();
+
+//     // Generate table headers
+//     $output = '<table class="' . $TableClass . '  table table-rounded table-bordered border gy-3 gs-3">';
+//     $output .= '<thead><tr class="fw-bold text-gray-800 border-bottom border-gray-200">';
+
+//     foreach ($firstRow as $key => $value) {
+//         if (in_array($key, $rem)) {
+//             continue;
+//         }
+
+//         $header = ucwords(Str::snake($key, ' '));
+//         $output .= '<th>' . e($header) . '</th>';
+//     }
+
+//     // Add custom headers if provided
+//     if (!empty($MustHave)) {
+//         foreach ($MustHave as $customHeader) {
+//             $output .= '<th>' . $customHeader['header'] . '</th>';
+//         }
+//     }
+
+//     if (!empty($actions)) {
+//         $output .= '<th class="bg-dark text-light">Actions</th>';
+//     }
+//     $output .= '</tr></thead>';
+
+//     // Generate table data
+//     $output .= '<tbody>';
+//     foreach ($data as $row) {
+//         $output .= '<tr>';
+//         foreach ($row as $key => $value) {
+//             if (in_array($key, $rem)) {
+//                 continue;
+//             }
+
+//             // Check if the column contains a PDF link or path
+//             $isPdf = preg_match('/(.pdf$)|(.pdf\?)/i', $value);
+
+//             if ($isPdf) {
+//                 $output .= '<td>';
+//                 $output .= '<a data-doc="' . e($row->id) . '" data-source="' . e(asset($value)) . '" data-bs-toggle="modal" href="#PdfJS" class="btn btn-sm PdfViewer btn-info"><i class="fas fa-file-pdf" aria-hidden="true"></i></a>';
+//                 $output .= '</td>';
+//             } else {
+//                 // Check if the value is numeric (integer, float, or decimal) and format it using number_format()
+//                 if (is_numeric($value)) {
+//                     $output .= '<td>' . e(number_format($value, 2)) . '</td>';
+//                 } else {
+//                     $output .= '<td>' . e($value) . '</td>';
+//                 }
+//             }
+//         }
+
+//         // Add custom data if provided
+//         if (!empty($MustHave)) {
+//             foreach ($MustHave as $customData) {
+//                 $output .= '<td>' . $customData['data']($row) . '</td>';
+//             }
+//         }
+
+//         // Generate action buttons
+//         if (!empty($actions)) {
+//             $output .= '<td>';
+//             $output .= '<div class="dropdown">';
+//             $output .= '<button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Choose Action</button>';
+//             $output .= '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">';
+//             foreach ($actions as $action) {
+//                 $output .= $action($row->id);
+//             }
+//             $output .= '</ul></div>';
+//             $output .= '</td>';
+//         }
+//         $output .= '</tr>';
+//     }
+//     $output .= '</tbody></table>';
+
+//     return $output;
+
+// }
 
 function camel_case($str)
 {

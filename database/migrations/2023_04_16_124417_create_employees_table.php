@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('ReportsToRoleID')->nullable();
             $table->string('DepartmentID')->nullable();
             $table->string('ClusterID');
-            $table->decimal('BasicSalary', 30, 2);
+            $table->decimal('BasicSalaryPerMonthInUsd', 30, 2);
             $table->decimal('GrossSalary', 10, 2)->nullable();
             $table->string('EmpID')->unique();
             $table->string('StaffCode')->unique()->nullable();

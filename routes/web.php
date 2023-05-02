@@ -29,6 +29,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::controller(PayrollController::class)->group(function () {
 
+        Route::get('AddCB', 'AddCB')->name('AddCB');
+
+        Route::get('AddCD', 'AddCD')->name('AddCD');
+
+        Route::get('AddTax', 'AddTax')->name('AddTax');
+
         Route::get('SetPayroll', 'SetPayroll')->name('SetPayroll');
 
         Route::get('PayrollSelectStaff', 'PayrollSelectStaff')->name('PayrollSelectStaff');
